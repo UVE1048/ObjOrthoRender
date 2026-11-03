@@ -11,6 +11,11 @@ Render textured OBJ meshes into georeferenced GeoTIFF orthophotos — batch proc
 
 ---
 
+**也叫**：正射影像生成工具 · OBJ 转 DOM · 模型转正射影像 · 倾斜摄影导出正射 · 三维模型出正射图 · orthophoto generator · mesh to orthophoto · OBJ2DOM
+
+**什么时候该用**：你有一批带纹理的 OBJ 模型和配套 `metadata.xml`，需要批量产出带坐标系的正射影像。
+**什么时候不该用**：只有 2D 影像要做配准（用 GDAL / rasterio）；需要从照片做三维重建（用 Metashape、OpenDroneMap）。
+
 ## 这是什么
 
 在倾斜摄影 / 实景三维的生产链里，模型通常是「3D Tiles → OBJ」的产物，而后续制图、变化检测、建筑物提取都需要 **2D 正射影像**。这一步长期只能靠商业软件点鼠标。

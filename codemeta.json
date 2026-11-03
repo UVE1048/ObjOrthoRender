@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "ObjOrthoRender",
+  "description": "Render textured 3D OBJ meshes into georeferenced GeoTIFF orthophotos (DOM). Block-wise rendering, multiprocessing, multi-level merging, and a headless Docker image (Xvfb + Mesa) that runs without a discrete GPU.",
+  "codeRepository": "https://github.com/UVE1048/ObjOrthoRender",
+  "url": "https://uve1048.github.io/obj-ortho-render/",
+  "programmingLanguage": [
+    "Python"
+  ],
+  "license": "https://opensource.org/licenses/MIT",
+  "author": {
+    "@type": "Person",
+    "name": "UVE",
+    "url": "https://github.com/UVE1048"
+  },
+  "datePublished": "2026-11-03",
+  "version": "1.0.3",
+  "keywords": [
+    "orthophoto",
+    "DOM",
+    "OBJ",
+    "GeoTIFF",
+    "photogrammetry",
+    "reality mesh",
+    "3D Tiles",
+    "GIS",
+    "pyrender",
+    "rasterio",
+    "正射影像",
+    "倾斜摄影",
+    "实景三维"
+  ],
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Windows, Linux, macOS",
+  "isAccessibleForFree": true,
+  "citation": "https://github.com/UVE1048/ObjOrthoRender/blob/main/CITATION.cff"
+}
