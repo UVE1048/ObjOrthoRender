@@ -4,6 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Stars](https://img.shields.io/github/stars/UVE1048/ObjOrthoRender?style=social)](https://github.com/UVE1048/ObjOrthoRender/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/UVE1048/ObjOrthoRender)](https://github.com/UVE1048/ObjOrthoRender/commits/main)
+[![CI](https://github.com/UVE1048/ObjOrthoRender/actions/workflows/ci.yml/badge.svg)](https://github.com/UVE1048/ObjOrthoRender/actions/workflows/ci.yml)
 
 **把带纹理的 OBJ 三维模型批量渲染成带地理参考的 GeoTIFF 正射影像（DOM）。**
 
@@ -46,11 +47,25 @@ Render textured OBJ meshes into georeferenced GeoTIFF orthophotos — batch proc
 git clone https://github.com/UVE1048/ObjOrthoRender.git
 cd ObjOrthoRender
 pip install -r requirements.txt
-
-python gui_app.py          # 图形界面
 ```
 
-命令行：
+### 先用样例数据跑通（约 60 秒）
+
+仓库自带一份**合成样例**（3 个盒子 + 地面，带棋盘贴图，不含任何真实地理数据），不需要准备自己的模型：
+
+```bash
+python render_orthophotos.py --input examples/sample --output out --gsd 0.5
+```
+
+跑完在 `out/MergedDOM/merged_all.tif` 得到一个带地理参考的正射影像，拖进 QGIS 就能看到四个矩形。棋盘格贴图会显示出每个面的边界，方便确认 UV 方向是否正确。
+
+### 图形界面
+
+```bash
+python gui_app.py
+```
+
+### 处理自己的模型
 
 ```bash
 python render_orthophotos.py \
@@ -61,7 +76,7 @@ python render_orthophotos.py \
   --merge-mode all
 ```
 
-Docker（无显卡服务器可直接用）：
+### Docker（无显卡服务器可直接用）
 
 ```bash
 docker build -t obj-ortho-cli:1.0.3 .

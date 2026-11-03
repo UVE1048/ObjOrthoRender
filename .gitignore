@@ -60,6 +60,9 @@ dist/_internal/
 output/
 Tiles/
 Merged/
-sample/
+/sample/
 *.tif
 *.log
+
+# 保留合成样例数据
+!examples/
