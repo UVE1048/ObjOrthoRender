@@ -26,9 +26,20 @@ python render_orthophotos.py --input examples/sample --output out --gsd 0.5
 
 ## 期望输出
 
-`out/MergedDOM/merged_all.tif`，RGB 三波段，地面占据大部分区域，三栋"楼"在正射视角下是三个实心矩形——**它们的高度差异在正射投影里不可见**，这正是正射影像的定义。
+`out/merged_all.tif`，RGB 三波段，240×240 像素 @ 0.5 m GSD（即 120 m 见方），`EPSG:3857`，原点 `0,0`。
 
-如果看到的是一圈黑边或者全黑，说明 OpenGL 没起来，先看 README 的常见问题。
+地面占据大部分区域，三栋"楼"在正射视角下是三个实心矩形——**它们的高度差异在正射投影里不可见**，这正是正射影像的定义。
+
+### 如果输出是全白
+
+日志里会有一条：
+
+```text
+[WARN] Textured rendering failed; falling back to untextured white material ...
+       reason: ArgumentError: ... glGenTextures ...
+```
+
+说明贴图上传失败、回退成了白色材质。几何与地理参考仍然正确，只是没有纹理。多见于 macOS + Python 3.13 的 pyrender / PyOpenGL 兼容问题——换 Python 3.12 或改用 Docker 镜像即可。
 
 ## 说明
 

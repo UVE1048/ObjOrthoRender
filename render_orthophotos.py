@@ -513,6 +513,7 @@ def render_and_save_tiled(mesh, output_path, gsd, srs_code, global_origin, tile_
 
     scene = None
     use_textures = False
+    _texture_warned = False
     for max_dim in (16384, 8192, 4096, 2048, 1024):
         if original_image is not None:
             _apply_texture_resize(mesh, max_dim=max_dim)
@@ -531,7 +532,20 @@ def render_and_save_tiled(mesh, output_path, gsd, srs_code, global_origin, tile_
             scene.remove_node(test_node)
             use_textures = True
             break
-        except Exception:
+        except Exception as exc:
+            # 贴图上传失败时仅提示一次，避免重复刷屏。静默回退会让输出变成全白图，
+            # 这是最难排查的失败模式之一，必须让用户看见原因。
+            if not _texture_warned:
+                _texture_warned = True
+                print(
+                    "[WARN] Textured rendering failed; falling back to untextured "
+                    "white material, output will be a flat white image.\n"
+                    f"       reason: {type(exc).__name__}: {exc}\n"
+                    "       Usually a pyrender/PyOpenGL incompatibility "
+                    "(e.g. Python 3.13 on macOS). Try Python 3.12, or use the "
+                    "Docker image which bundles Xvfb + Mesa.",
+                    flush=True,
+                )
             try:
                 r.delete()
             except Exception:

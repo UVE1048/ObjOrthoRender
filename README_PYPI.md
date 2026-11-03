@@ -59,7 +59,11 @@ pip install -r requirements.txt
 python render_orthophotos.py --input examples/sample --output out --gsd 0.5
 ```
 
-跑完在 `out/MergedDOM/merged_all.tif` 得到一个带地理参考的正射影像，拖进 QGIS 就能看到四个矩形。棋盘格贴图会显示出每个面的边界，方便确认 UV 方向是否正确。
+跑完在 `out/merged_all.tif` 得到一个带地理参考的正射影像：240×240 像素、GSD 0.5 m，即 120 m 见方，`EPSG:3857`，原点 `0,0`。拖进 QGIS 就能定位。
+
+棋盘格贴图会显示出每个面的边界，方便确认 UV 方向是否正确。
+
+> 如果你在这台机器上看到 `[WARN] Textured rendering failed`，说明贴图上传失败、程序回退成了白色材质（几何与地理参考仍然正确，只是没有纹理）。原因与处理见[常见问题](#常见问题)。
 
 ### 图形界面
 
@@ -148,6 +152,10 @@ docker run --rm -it -v /host/input:/data obj-ortho-cli:1.0.3
 - **填洞**：小洞走快速闭运算，大洞（水面）用更多迭代次数
 
 ## 常见问题
+
+**Q：输出全白，日志里有 `[WARN] Textured rendering failed`？**
+贴图上传失败了，程序回退成白色材质——几何、坐标、尺寸都是对的，只是没有纹理。这是 pyrender / PyOpenGL 的兼容问题，多见于 macOS + Python 3.13（`glGenTextures` 抛 `ctypes.ArgumentError`）。
+处理办法：换 Python 3.12，或直接用 Docker 镜像（内置 Xvfb + Mesa）。程序一定会打印这条警告，不会静默产出白图。
 
 **Q：模型在地图上整体偏移？**
 检查 `metadata.xml` 的 `SRSOrigin` 是否与出模时一致；再确认 `SRS` 是 `EPSG:3857` 而非 `EPSG:4326`。
