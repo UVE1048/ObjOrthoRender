@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software in academic work, please cite it as below."
+type: software
+title: "ObjOrthoRender"
+abstract: >-
+  Render textured 3D OBJ meshes into georeferenced GeoTIFF orthophotos (DOM).
+  Features block-wise rendering to bypass GPU memory limits, multiprocessing,
+  three merge strategies, hole filling, a Tkinter GUI, and a headless Docker
+  image (Xvfb + Mesa) that runs without a discrete GPU.
+authors:
+  - family-names: "UVE"
+    alias: "UVE1048"
+    website: "https://github.com/UVE1048"
+repository-code: "https://github.com/UVE1048/ObjOrthoRender"
+url: "https://github.com/UVE1048/ObjOrthoRender"
+license: MIT
+version: "1.0.3"
+date-released: "2026-11-03"
+keywords:
+  - orthophoto
+  - DOM
+  - digital orthophoto map
+  - OBJ
+  - GeoTIFF
+  - photogrammetry
+  - reality mesh
+  - 3D Tiles
+  - mesh rendering
+  - GIS
+  - remote sensing
+  - 正射影像
+  - 倾斜摄影
+  - 实景三维

@@ -1,0 +1,46 @@
+# ObjOrthoRender
+
+> Render textured 3D OBJ meshes into georeferenced GeoTIFF orthophotos (DOM). Batch processing, multiprocessing, multi-level merging, and a headless Docker image that runs without a GPU.
+
+ObjOrthoRender is a command-line tool and Tkinter GUI that turns a directory of
+textured `.obj` meshes plus a `metadata.xml` (SRS + SRSOrigin) into georeferenced
+GeoTIFF orthophotos. It is the "mesh to 2D map" step of a photogrammetry
+pipeline, typically applied to the OBJ output of a 3D Tiles conversion.
+
+Key capabilities: block-wise rendering to bypass GPU memory and texture size
+limits; three merge strategies (`all`, `subfolder`, `none`); hole filling tuned
+for water surfaces; multiprocessing across OBJ files; and a Docker image with
+Xvfb + Mesa software OpenGL so it runs on servers with no discrete GPU.
+
+## Entry points
+
+- `render_orthophotos.py` - rendering core and CLI entry point. Flags: `--input`,
+  `--output`, `--metadata`, `--gsd`, `--workers`, `--merge-mode`, `--fill-holes`,
+  `--subdir`.
+- `gui_app.py` - Tkinter desktop GUI.
+- `Dockerfile` - headless image, defaults to `/data` as the input mount point.
+- `build_exe.py` - PyInstaller packaging for Windows.
+
+## Docs
+
+- [README](https://github.com/UVE1048/ObjOrthoRender/blob/main/README.md): features, parameters, output layout, comparison with alternatives, FAQ.
+- [Usage guide](https://github.com/UVE1048/ObjOrthoRender/blob/main/docs/usage.md): detailed Docker and GUI parameter reference.
+
+## Input and output contract
+
+Input: a directory tree containing `.obj` files (recursive), their `.mtl` and
+textures, and a `metadata.xml` with `<SRS>` and `<SRSOrigin>`.
+Output: RGB GeoTIFF (no alpha, black background) placed next to your chosen
+output directory, optionally merged into `MergedDOM/merged_all.tif`.
+
+## Keywords
+
+orthophoto, orthomosaic, DOM, digital orthophoto map, OBJ to GeoTIFF, mesh to 2D,
+photogrammetry, reality mesh, 3D Tiles, pyrender, trimesh, rasterio, GDAL,
+EPSG:3857, Web Mercator, headless OpenGL, Xvfb, Mesa, Docker,
+正射影像, 倾斜摄影, 实景三维, 三维模型转正射
+
+## License
+
+MIT. Third-party dependencies keep their own licenses (trimesh MIT, pyrender MIT,
+rasterio BSD-3, GDAL MIT/X).
