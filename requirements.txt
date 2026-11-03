@@ -1,0 +1,11 @@
+numpy
+trimesh
+pyrender
+pyglet
+Pillow
+rasterio
+scipy
+networkx
+pyinstaller
+pyfastobj; platform_system=="Windows"
+GDAL==3.6.2; platform_system=="Linux"
