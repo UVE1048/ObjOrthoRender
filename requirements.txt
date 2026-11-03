@@ -8,4 +8,4 @@ scipy
 networkx
 pyinstaller
 pyfastobj; platform_system=="Windows"
-GDAL==3.6.2; platform_system=="Linux"
+GDAL==3.13.3; platform_system=="Linux"
