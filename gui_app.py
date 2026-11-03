@@ -444,9 +444,14 @@ class OrthoRendererApp:
             self.root.after(0, lambda: self.btn_start.configure(state="normal"))
             self.root.after(0, lambda: self.lbl_status.configure(text="Ready"))
 
-if __name__ == "__main__":
+def main():
+    """Launch the GUI. Exposed as the objorthorender-gui console script."""
     multiprocessing.freeze_support()
-    
+
     root = tk.Tk()
-    app = OrthoRendererApp(root)
+    OrthoRendererApp(root)
     root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

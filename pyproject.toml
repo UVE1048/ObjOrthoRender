@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "objorthorender"
+version = "1.0.3"
+description = "Render textured 3D OBJ meshes into georeferenced GeoTIFF orthophotos (DOM), with block-wise rendering and headless Docker support."
+readme = "README_PYPI.md"
+requires-python = ">=3.8"
+authors = [{ name = "UVE", email = "uve1048@foxmail.com" }]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+    "orthophoto", "orthomosaic", "DOM", "digital orthophoto map",
+    "OBJ", "GeoTIFF", "photogrammetry", "reality mesh", "3D Tiles",
+    "GIS", "remote sensing", "mesh rendering", "pyrender", "rasterio",
+    "正射影像", "倾斜摄影", "实景三维",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: X11 Applications",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Multimedia :: Graphics :: 3D Rendering",
+]
+dependencies = [
+    "numpy",
+    "trimesh",
+    "pyrender",
+    "pyglet",
+    "Pillow",
+    "rasterio",
+    "scipy",
+    "networkx",
+    "pyfastobj; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = ["setuptools>=64", "build", "twine", "pyinstaller"]
+
+[project.scripts]
+objorthorender = "render_orthophotos:main"
+objorthorender-gui = "gui_app:main"
+
+[project.urls]
+Homepage = "https://uve1048.github.io/obj-ortho-render/"
+Repository = "https://github.com/UVE1048/ObjOrthoRender"
+Documentation = "https://github.com/UVE1048/ObjOrthoRender/blob/main/docs/usage.md"
+Issues = "https://github.com/UVE1048/ObjOrthoRender/issues"
+Changelog = "https://github.com/UVE1048/ObjOrthoRender/releases"
+
+[tool.setuptools]
+py-modules = ["render_orthophotos", "gui_app"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt"]

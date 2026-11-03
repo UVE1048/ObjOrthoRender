@@ -66,3 +66,7 @@ Merged/
 
 # 保留合成样例数据
 !examples/
+
+# Python 打包产物
+dist/
+*.egg-info/
